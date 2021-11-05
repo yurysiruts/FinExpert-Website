@@ -83,5 +83,51 @@ toTop.addEventListener('click', (e) => {
   $('html, body').animate({scrollTop:0}, '300');
 });
 
+// RD NAVBAR
+
+$(document).ready(function() {
+
+  // RD Navbar 
+  o = $('.rd-navbar');
+  o.RDNavbar({}); // Additional options
+
+});
+
+// Toggle navbar elements
+
+const navItems = document.querySelectorAll('ul.navbar-nav li');
+
+navItems.forEach((item, i) => {
+  item.addEventListener('mouseenter', (e) => {
+    if(e.target.classList.contains('navbar-has-dropdown')) {
+      e.target.classList.add('focus');
+    };
+  });
+  
+  item.addEventListener('mouseleave', (e) => {
+    if(e.target.classList.contains('navbar-has-dropdown')) {
+      e.target.classList.remove('focus');
+    };
+  });
+});
+
+// Sticky header
+
+const stickyNav = document.querySelector('.navbar-sticky');
+let navTop = stickyNav.offsetTop;
 
 
+function fixedNav() {
+  console.log(`sticky div: offset: ${navTop}`);
+  console.log(window.scrollY);
+
+  if (window.scrollY >= navTop) {    
+    stickyNav.classList.add('fixed');
+  } else {
+    stickyNav.classList.remove('fixed');    
+  }
+}
+
+window.addEventListener('scroll', fixedNav);
+
+let header = document.querySelector('.header');
