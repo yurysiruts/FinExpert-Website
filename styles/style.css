@@ -296,7 +296,8 @@ ul ul, ul ol, ol ul, ol ol {
     .navbar-search .rd-search {
       position: relative;
       border: none;
-      border-radius: 5px; }
+      border-radius: 5px;
+      transition: .33s all ease; }
       .navbar-search .rd-search label {
         font-size: 15px; }
       .navbar-search .rd-search input {
@@ -322,13 +323,44 @@ ul ul, ul ol, ol ul, ol ol {
             font-size: 1.05em; }
           .navbar-search .rd-search-submit i:hover {
             color: #229dd1; }
+      .navbar-search .rd-search-toggle {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        background-color: transparent;
+        border: none;
+        transform: translateY(-50%);
+        cursor: pointer;
+        padding: 5px; }
+        .navbar-search .rd-search-toggle:hover i {
+          color: #229dd1; }
+        .navbar-search .rd-search-toggle i {
+          color: #fff;
+          transition: .33s all ease; }
+          .navbar-search .rd-search-toggle i::before {
+            font-size: 1.5em; }
+          .navbar-search .rd-search-toggle i:hover {
+            color: #229dd1; }
+    .navbar-search .rd-search.active {
+      opacity: 1;
+      width: 330px; }
+    .navbar-search .rd-input-label {
+      display: inherit; }
+    .navbar-search .rd-input-label.focus {
+      display: none; }
     .navbar-search input {
       background: #3c434f;
       border: 1px solid #3c434f; }
 
-@media screen and (min-width: 1200px) {
+@media (min-width: 1200px) {
   .navbar-static .navbar-search {
     width: 330px; }
+
+  .rd-search {
+    margin-left: auto;
+    overflow: hidden;
+    opacity: 0;
+    width: 0; }
 
   .rd-search label {
     transition: none; } }
@@ -610,8 +642,8 @@ label {
 
 .form-label {
   position: absolute;
-  top: 26px;
-  left: 1726px;
+  top: 20px;
+  left: 17px;
   font-size: 15;
   color: #999;
   pointer-events: none;

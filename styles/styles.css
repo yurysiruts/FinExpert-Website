@@ -416,6 +416,8 @@ ul ul, ul ol, ol ul, ol ol {
   position: relative;
   border: none;
   border-radius: 5px;
+  -webkit-transition: .33s all ease;
+  transition: .33s all ease;
 }
 
 .navbar-search .rd-search label {
@@ -458,14 +460,63 @@ ul ul, ul ol, ol ul, ol ol {
   color: #229dd1;
 }
 
+.navbar-search .rd-search-toggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  background-color: transparent;
+  border: none;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+  cursor: pointer;
+  padding: 5px;
+}
+
+.navbar-search .rd-search-toggle:hover i {
+  color: #229dd1;
+}
+
+.navbar-search .rd-search-toggle i {
+  color: #fff;
+  -webkit-transition: .33s all ease;
+  transition: .33s all ease;
+}
+
+.navbar-search .rd-search-toggle i::before {
+  font-size: 1.5em;
+}
+
+.navbar-search .rd-search-toggle i:hover {
+  color: #229dd1;
+}
+
+.navbar-search .rd-search.active {
+  opacity: 1;
+  width: 330px;
+}
+
+.navbar-search .rd-input-label {
+  display: inherit;
+}
+
+.navbar-search .rd-input-label.focus {
+  display: none;
+}
+
 .navbar-search input {
   background: #3c434f;
   border: 1px solid #3c434f;
 }
 
-@media screen and (min-width: 1200px) {
+@media (min-width: 1200px) {
   .navbar-static .navbar-search {
     width: 330px;
+  }
+  .rd-search {
+    margin-left: auto;
+    overflow: hidden;
+    opacity: 0;
+    width: 0;
   }
   .rd-search label {
     -webkit-transition: none;
@@ -860,8 +911,8 @@ label {
 
 .form-label {
   position: absolute;
-  top: 26px;
-  left: 1726px;
+  top: 20px;
+  left: 17px;
   font-size: 15;
   color: #999;
   pointer-events: none;

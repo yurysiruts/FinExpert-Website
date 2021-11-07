@@ -425,6 +425,7 @@ ul ul, ul ol, ol ul, ol ol {
       position: relative;
       border: none;
       border-radius: 5px;
+      transition: .33s all ease;
 
       label {
         font-size: 15px;
@@ -466,6 +467,47 @@ ul ul, ul ol, ol ul, ol ol {
           }
         }
       }
+
+      &-toggle {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        background-color: transparent;
+        border: none;
+        transform: translateY(-50%);
+        cursor: pointer;
+        padding: 5px;
+
+        &:hover {
+          i {
+            color: #229dd1;
+          }
+        }
+
+        i {
+          color: #fff;
+          transition: .33s all ease;
+          &::before {
+            font-size: 1.5em;
+          }
+          &:hover {
+            color: #229dd1;
+          }
+        }
+      }
+    }
+
+    .rd-search.active {
+      opacity: 1;
+      width: 330px;
+    }
+
+    .rd-input-label {
+      display: inherit;
+    }
+
+    .rd-input-label.focus {
+      display: none;
     }
 
     input {
@@ -475,15 +517,23 @@ ul ul, ul ol, ol ul, ol ol {
   }
 }
 
-@media screen and (min-width: 1200px) {
+@media (min-width: 1200px) {
   .navbar-static .navbar-search {
     width: 330px;
+  }
+
+  .rd-search {
+    margin-left: auto;
+    overflow: hidden;
+    opacity: 0;
+    width: 0;
   }
 
   .rd-search label {
     transition: none;
   }
-} 
+
+}
 
 .navbar-static .block-wrap-list  {
   display: flex;
@@ -880,8 +930,8 @@ label {
 
 .form-label {
   position: absolute;
-  top: 26px;
-  left: 1726px;
+  top: 20px;
+  left: 17px;
   font-size: 15;
   color: #999;
   pointer-events: none;

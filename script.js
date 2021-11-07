@@ -83,16 +83,6 @@ toTop.addEventListener('click', (e) => {
   $('html, body').animate({scrollTop:0}, '300');
 });
 
-// RD NAVBAR
-
-$(document).ready(function() {
-
-  // RD Navbar 
-  o = $('.rd-navbar');
-  o.RDNavbar({}); // Additional options
-
-});
-
 // Toggle navbar elements
 
 const navItems = document.querySelectorAll('ul.navbar-nav li');
@@ -118,8 +108,8 @@ let navTop = stickyNav.offsetTop;
 
 
 function fixedNav() {
-  console.log(`sticky div: offset: ${navTop}`);
-  console.log(window.scrollY);
+  // console.log(`sticky div: offset: ${navTop}`);
+  // console.log(window.scrollY);
 
   if (window.scrollY >= navTop) {    
     stickyNav.classList.add('fixed');
@@ -131,3 +121,55 @@ function fixedNav() {
 window.addEventListener('scroll', fixedNav);
 
 let header = document.querySelector('.header');
+
+
+// Search field toggle
+
+const toggleBtn = document.querySelector('.rd-search-toggle');
+const searchField = document.querySelector('.rd-search');
+
+toggleBtn.addEventListener('click', () => {
+  searchField.classList.add('active');
+});
+
+// + Observing changes in sticky nav class, toggling search field
+
+let prevClassState = stickyNav.classList.contains('fixed');
+
+console.log(prevClassState);
+
+const observer = new MutationObserver(function(mutations) {
+  mutations.forEach(function(mutation) {
+      if(mutation.attributeName == "class"){
+          let currentClassState = mutation.target.classList.contains('fixed');
+
+          if(prevClassState !== currentClassState) {
+            prevClassState = currentClassState;
+            if(currentClassState) {
+              console.log("class added!");
+              searchField.classList.remove('active');
+            } else {
+              console.log("class removed!");
+              searchField.classList.remove('active');
+            }
+          };
+      }
+  });
+});
+observer.observe(stickyNav, {attributes: true});
+
+
+// Click search, toggle label
+
+const rdInputField = document.getElementById('rd-search-form-input');
+const rdLabel = document.querySelector('.rd-input-label');
+
+rdInputField.addEventListener('click', () => {
+  rdLabel.classList.add('focus');
+});
+
+document.addEventListener('click', (e) => {
+  if(!e.target.classList.contains('form-control') && rdInputField.value === '') {
+    rdLabel.classList.remove('focus');
+  }
+});
