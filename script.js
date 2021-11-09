@@ -83,21 +83,44 @@ toTop.addEventListener('click', (e) => {
   $('html, body').animate({scrollTop:0}, '300');
 });
 
-// Toggle navbar elements
+// Toggle navbar elements & Drop down the submenu
 
-const navItems = document.querySelectorAll('ul.navbar-nav li');
+const navItems = document.querySelectorAll('ul.navbar-nav li.navbar-has-dropdown');
+console.log(navItems)
 
 navItems.forEach((item, i) => {
-  item.addEventListener('mouseenter', (e) => {
-    if(e.target.classList.contains('navbar-has-dropdown')) {
-      e.target.classList.add('focus');
-    };
+  // toggling rotating shevron
+  item.addEventListener('mouseover', (e) => {
+    for (let i = 0; i < navItems.length; i++) {
+      navItems[i].classList.remove('focus');
+    }
+    item.classList.add('focus');
   });
   
+  // document.addEventListener('mousemove', (e) => {
+  //   console.log(e.target);
+  //   if(!e.target.classList.contains('navbar-has-dropdown') && e.target !== item.children[0] && e.target !== item.children[1] && e.target !== item.children[2] && !e.target.classList.contains('fas') && e.target !== item.children[2] && !e.target.classList.contains('navbar-nav-wrap-inner') && !e.target.classList.contains('navbar-nav-wrap') && !e.target.classList.contains('navbar-submenu') && !e.target.classList.contains('navbar-submenu-li') && !e.target.classList.contains('navbar-submenu-li-link')) {
+  //     setTimeout(() => {
+  //       item.classList.remove('focus');
+  //     }, 800);
+  //   }
+  // });
+
   item.addEventListener('mouseleave', (e) => {
-    if(e.target.classList.contains('navbar-has-dropdown')) {
-      e.target.classList.remove('focus');
-    };
+    setTimeout(() => {
+      item.classList.remove('focus');
+    }, 800);
+  });
+  
+  // submenu popup/hide
+  item.children[1].addEventListener('click', (e) => {
+    item.classList.add('opened');
+  });
+
+  document.addEventListener('click', (e) => {
+    if(!e.target.classList.contains('fa-chevron-down')) {
+      item.classList.remove('opened');
+    }
   });
 });
 

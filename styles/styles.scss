@@ -285,17 +285,21 @@ ul ul, ul ol, ol ul, ol ol {
     }
 
     > li:hover {
-      * {
+      a {
         color: #44bef1;
         fill:  #44bef1;
       }
     }
 
-    > li.focus {
-      span i {
-        transform: rotate(180deg) translateY(1px); 
-      }
-    }
+    // > li.focus {
+    //   span i {
+    //     transform: rotate(180deg) translateY(1px); 
+    //   }
+    //   * {
+    //     color: #44bef1;
+    //     fill:  #44bef1;
+    //   }
+    // }
 
     > li {
       display: inline-block;
@@ -341,7 +345,8 @@ ul ul, ul ol, ol ul, ol ol {
   &-sticky {
     top: 0;
     width: 100%;
-    z-index: 1000;
+    z-index: 15;
+    position: relative;
   }
 
   &-sticky.fixed {
@@ -515,6 +520,137 @@ ul ul, ul ol, ol ul, ol ol {
       border: 1px solid #3c434f;
     }
   }
+
+  //////////////////////////
+  ///// NAVBAR SUBMENU /////
+  //////////////////////////
+
+  &-nav {
+    li.opened > .navbar-submenu {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0px);
+      -webkit-transform: translateY(0px);
+    }
+
+    > li.opened {
+      span i {
+        transform: rotate(180deg) translateY(1px); 
+      }
+      * {
+        color: #44bef1;
+        fill:  #44bef1;
+      }
+    }
+
+    > li.focus {
+      span i {
+        transform: rotate(180deg) translateY(1px); 
+      }
+      * {
+        color: #44bef1;
+        fill:  #44bef1;
+      }
+      .navbar-submenu {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+      }
+    }
+  }
+
+  &-has-dropdown {
+    position: relative;
+
+    .navbar-submenu {
+      position: absolute;
+      background: #fff;
+      display: block;
+      width: 270px;
+      margin-top: 19px;
+      text-align: left;
+      border: 1px solid #e8e8e8;
+      top: 100%;
+      z-index: 5;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateY(30px);
+      -webkit-transform: translateY(30px);
+      transition: .33s all ease;
+      
+      > li {
+        padding: 12px 18px 12px;
+        border-top: 1px solid #e8e8e8;
+
+        a {
+          color: #333;
+
+          &:hover {
+            color: #24a3d8;
+            background: transparent;
+          }
+        }
+      }
+    }
+
+    .navbar-submenu-li {
+      position: relative;
+
+      // Right submenu
+      .navbar-submenu-right {
+        background: #fff;
+        display: block;
+        width: 270px;
+        margin-top: 19px;
+        text-align: left;
+        border: 1px solid #e8e8e8;
+        z-index: 5;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(30px);
+        -webkit-transform: translateY(30px);
+        transition: .33s all ease;
+        position: absolute;
+        left: 268px;
+        top: -21px;
+
+        > li {
+          padding: 12px 18px 12px;
+          border-top: 1px solid #e8e8e8;
+  
+          a {
+            color: #333;
+  
+            &:hover {
+              color: #24a3d8;
+              background: transparent;
+            }
+          }
+        }
+      }
+    }
+
+    .navbar-submenu-li.opened {
+      * {
+        color: #44bef1;
+        fill:  #44bef1;
+      }
+
+      span i {
+        transform: rotate(270deg) translateY(1px); 
+      }
+
+      .navbar-submenu-right {
+        visibility: visible;
+        opacity: 1;
+        transform: translateY(0px);
+        -webkit-transform: translateY(0px);
+      }
+    }
+  }
+
+  
 }
 
 @media (min-width: 1200px) {
@@ -533,6 +669,9 @@ ul ul, ul ol, ol ul, ol ol {
     transition: none;
   }
 
+  .navbar-submenu {
+    left: -21px;
+  }
 }
 
 .navbar-static .block-wrap-list  {
@@ -788,7 +927,7 @@ ul ul, ul ol, ol ul, ol ol {
     margin: 6px auto 0;
   }
 
-  .rd-mailform-inline *, .page .rd-mailform-inline label, .page .rd-mailform-inline .btn {
+  .rd-mailform-inline *, .rd-mailform-inline label, .rd-mailform-inline .btn {
     margin: 0;
   }
 
@@ -815,19 +954,13 @@ ul ul, ul ol, ol ul, ol ol {
     flex-grow: 1;
   }
 
-  .rd-mailform-inline > *:first-child, .page .rd-mailform-inline > *:first-child * {
+  .rd-mailform-inline > *:first-child, .rd-mailform-inline > *:first-child * {
     border-radius: 5px 0 0 5px;
   }
 
   .rd-mailform-inline > *:last-child {
     border-radius: 0 5px 5px 0;
   }
-}
-
-.page .btn-gray-darker-outline, .page .btn-gray-darker-outline:focus, .page .btn-gray-darker-outline.focus, .page .btn-gray-darker-outline:active, .page .btn-gray-darker-outline.active, .open > .page .btn-gray-darker-outline.dropdown-toggle {
-  color: #333;
-  background-color: transparent;
-  border-color: #aeaeae;
 }
 
 .icon {
@@ -850,11 +983,11 @@ ul ul, ul ol, ol ul, ol ol {
   height:  14px;
   font-size: 14px;
   line-height: 14px;
+  transition: .33s all ease;
 }
 
 .icon-circle {
   border-radius: 50%;
-  
 }
 
 .icon-xxs.icon-circle {
@@ -863,10 +996,14 @@ ul ul, ul ol, ol ul, ol ol {
   line-height: 27px;
   background: #dfdfdf;
   cursor: pointer;
-  transition-duration: 0.3s;
+  transition: .33s all ease;
 
   &:hover {
-    background: #ffffff;
+    color: #fff;
+    background: #51ccff;
+    i {
+      color: #fff;
+    }
   }
 }
 
@@ -954,10 +1091,6 @@ label {
 
 .rd-mailform label {
   line-height: 24px;
-}
-
-.rd-mailform label + * {
-  margin-top: 5px;
 }
 
 .rd-mailform.form-white input, .rd-mailform.form-white textarea {
@@ -1243,22 +1376,6 @@ address {
   }
 }
 
-@media (min-width: 768px) {
-  .bg-athens-gray-inner:before {
-      content: '';
-      position: absolute;
-      top: 100px;
-      bottom: 0;
-      left: 50%;
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
-      width: 200vw;
-      z-index: -1;
-      background: #f2f2f5;
-  }
-}
-
-
 // Owl-Carousel Custom
 
 .owl-item-396 {
@@ -1415,6 +1532,60 @@ address {
 
 .link-image > * {
   width: 100%;
+}
+
+.image-wrap {
+  position: relative;
+}
+
+@media (min-width: 992px) {
+  .image-wrap-1 img {
+      position: relative;
+      right: 51px;
+      bottom: 0;
+      width: 138%;
+      height: auto;
+  }
+}
+
+@media (min-width: 1200px) {
+  .image-wrap-1 {
+      margin-top: -10px;
+  }
+
+  .image-wrap-1 img {
+      right: 51px;
+      bottom: 0;
+      width: 111%;
+      height: auto;
+  }
+}
+
+@media (min-width: 768px) {
+  .bg-athens-gray-inner:before {
+      content: '';
+      position: absolute;
+      top: 100px;
+      bottom: 0;
+      left: -27%;
+      -webkit-transform: translateX(-50%);
+      transform: translateX(-50%);
+      width: 100vw;
+      z-index: -1;
+      background: #f2f2f5;
+      pointer-events: none;
+  }
+}
+
+*:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+*:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 // Owl Arrows
