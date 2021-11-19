@@ -114,6 +114,9 @@ navItems.forEach((item, i) => {
   
   // submenu popup/hide
   item.children[1].addEventListener('click', (e) => {
+    for (let i = 0; i < navItems.length; i++) {
+      navItems[i].classList.remove('opened');
+    }
     item.classList.add('opened');
   });
 
@@ -150,10 +153,31 @@ let header = document.querySelector('.header');
 
 const toggleBtn = document.querySelector('.rd-search-toggle');
 const searchField = document.querySelector('.rd-search');
+const searchBtn = document.querySelector('.rd-search-toggle i.fa-search');
+const closeBtn = document.querySelector('.rd-search-toggle i.fa-times-circle');
 
-toggleBtn.addEventListener('click', () => {
-  searchField.classList.add('active');
+toggleBtn.addEventListener('click', (e) => {
+
+  console.log(e.target);
+
+  if(window.outerWidth >= 1200) {
+    searchField.classList.add('active');
+    searchBtn.classList.remove('active');
+  };
+  
+  if(window.outerWidth < 1200) {
+    searchField.classList.add('active');
+    searchBtn.classList.remove('active');
+    closeBtn.classList.add('active');
+  };
+  if(e.target == closeBtn && window.outerWidth < 1200) {
+    searchField.classList.remove('active');
+    closeBtn.classList.remove('active');
+    searchBtn.classList.add('active');
+    searchBtn.style.color = "#fff";
+  };
 });
+
 
 // + Observing changes in sticky nav class, toggling search field
 
@@ -171,9 +195,25 @@ const observer = new MutationObserver(function(mutations) {
             if(currentClassState) {
               console.log("class added!");
               searchField.classList.remove('active');
+              
+              if(window.outerWidth >= 1200) {
+                searchBtn.classList.add('active');
+                closeBtn.classList.remove('active');
+              } else {
+                searchBtn.classList.add('active');
+                closeBtn.classList.remove('active');
+              }
             } else {
               console.log("class removed!");
               searchField.classList.remove('active');
+              searchBtn.classList.add('active');
+              if(window.outerWidth >= 1200) {
+                searchBtn.classList.add('active');
+                closeBtn.classList.remove('active');
+              } else {
+                searchBtn.classList.add('active');
+                closeBtn.classList.remove('active');
+              }
             }
           };
       }

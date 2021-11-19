@@ -35,7 +35,7 @@
 
 @media (min-width: 992px) {
   .shell, .shell-wide {
-      max-width: 970px;
+      max-width: 794px;
   }
 }
 
@@ -1045,6 +1045,13 @@
       flex-basis: 55.55556%;
       max-width: 55.55556%;
   }
+
+  .range > .cell-sm-7 {
+    -webkit-flex-basis: 58.33333%;
+    -ms-flex-preferred-size: 58.33333%;
+    flex-basis: 58.33333%;
+    max-width: 58.33333%;
+}
 }
 
 @media (min-width: 1200px) {
@@ -4082,13 +4089,6 @@ html.lt-ie-10 .range-narrow > * + [class*='cell'], .range-narrow > * + [class*='
       order: 6;
   }
 
-  .range > .cell-sm-7 {
-      -webkit-flex-basis: 58.33333%;
-      -ms-flex-preferred-size: 58.33333%;
-      flex-basis: 58.33333%;
-      max-width: 58.33333%;
-  }
-
   .range > .cell-sm-preffix-7 {
       margin-left: 58.33333%;
   }
@@ -5159,6 +5159,9 @@ html.lt-ie-10 .range-narrow > * + [class*='cell'], .range-narrow > * + [class*='
   h4 a {
     text-decoration: none;
   }
+  p {
+    margin-top: 15px;
+  }
 }
 
 .product h1, .product h2, .product h3, .product h4, .product h5, .product h6, .product .h1, .product .h2, .product .h3, .product .h4, .product .h5, .product .h6 {
@@ -5634,6 +5637,7 @@ mark, .mark {
     align-items: center;
 
     h2 {
+      width: 38%;
       margin: 0;
       padding-right: 0.6em;
       margin-right: 0.6em;
@@ -5642,6 +5646,50 @@ mark, .mark {
 
     a.btn {
       font-weight: 700;
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .elements {
+    &-group {
+      flex-direction: column;
+    }
+  
+    &-wrap {
+      flex-direction: column;
+  
+      h2 {
+        position: relative;
+        width: 100%;
+        text-align: center;
+        margin: 0;
+        padding-right: 0.6em;
+        margin-right: 0.6em;
+        border: none;
+        margin: 36px 0;
+        padding: 0;
+
+        &::after {
+          content: "";
+          background: #fff;
+          position: absolute;
+          bottom: -25px;
+          left: 50%;
+          height: 1px;
+          width: 46px;
+          transform: translateX(-50%);
+        }
+      }
+
+      p {
+        margin-bottom: 32px;
+      }
+  
+      a.btn {
+        font-weight: 700;
+        margin-bottom: 32px;
+      }
     }
   }
 }

@@ -20,7 +20,7 @@
     max-width: 750px; } }
 @media (min-width: 992px) {
   .shell, .shell-wide {
-    max-width: 970px; } }
+    max-width: 794px; } }
 @media (min-width: 1200px) {
   .shell, .shell-wide {
     max-width: 1200px; } }
@@ -845,7 +845,13 @@
     -webkit-flex-basis: 55.55556%;
     -ms-flex-preferred-size: 55.55556%;
     flex-basis: 55.55556%;
-    max-width: 55.55556%; } }
+    max-width: 55.55556%; }
+
+  .range > .cell-sm-7 {
+    -webkit-flex-basis: 58.33333%;
+    -ms-flex-preferred-size: 58.33333%;
+    flex-basis: 58.33333%;
+    max-width: 58.33333%; } }
 @media (min-width: 1200px) {
   * + [class*='cell-lg-'] {
     margin-top: 0; }
@@ -3170,12 +3176,6 @@ html.lt-ie-10 .range-narrow > * + [class*='cell'], .range-narrow > * + [class*='
     -ms-flex-order: 6;
     order: 6; }
 
-  .range > .cell-sm-7 {
-    -webkit-flex-basis: 58.33333%;
-    -ms-flex-preferred-size: 58.33333%;
-    flex-basis: 58.33333%;
-    max-width: 58.33333%; }
-
   .range > .cell-sm-preffix-7 {
     margin-left: 58.33333%; }
 
@@ -4048,6 +4048,8 @@ html.lt-ie-10 .range-narrow > * + [class*='cell'], .range-narrow > * + [class*='
   transition: .22s; }
   .product h4 a {
     text-decoration: none; }
+  .product p {
+    margin-top: 15px; }
 
 .product h1, .product h2, .product h3, .product h4, .product h5, .product h6, .product .h1, .product .h2, .product .h3, .product .h4, .product .h5, .product .h6 {
   color: #000; }
@@ -4384,6 +4386,7 @@ mark, .mark {
   flex-direction: row;
   align-items: center; }
   .elements-wrap h2 {
+    width: 38%;
     margin: 0;
     padding-right: 0.6em;
     margin-right: 0.6em;
@@ -4391,6 +4394,35 @@ mark, .mark {
   .elements-wrap a.btn {
     font-weight: 700; }
 
+@media (max-width: 991px) {
+  .elements-group {
+    flex-direction: column; }
+  .elements-wrap {
+    flex-direction: column; }
+    .elements-wrap h2 {
+      position: relative;
+      width: 100%;
+      text-align: center;
+      margin: 0;
+      padding-right: 0.6em;
+      margin-right: 0.6em;
+      border: none;
+      margin: 36px 0;
+      padding: 0; }
+      .elements-wrap h2::after {
+        content: "";
+        background: #fff;
+        position: absolute;
+        bottom: -25px;
+        left: 50%;
+        height: 1px;
+        width: 46px;
+        transform: translateX(-50%); }
+    .elements-wrap p {
+      margin-bottom: 32px; }
+    .elements-wrap a.btn {
+      font-weight: 700;
+      margin-bottom: 32px; } }
 .btn-default, .btn-default:focus, .btn-default.focus, .btn-default:active, .btn-default.active, .open > .btn-default.dropdown-toggle {
   color: #fff;
   background-color: #000;

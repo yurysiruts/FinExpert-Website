@@ -232,12 +232,24 @@ ul ul, ul ol, ol ul, ol ol {
       margin-left: 42px; }
   .navbar-sticky {
     top: 0;
-    width: 100%;
     z-index: 15;
     position: relative; }
+    .navbar-sticky::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      bottom: 0;
+      z-index: 0;
+      background: #323946;
+      pointer-events: none; }
   .navbar-sticky.fixed {
     position: fixed;
-    border-bottom: 1px solid #252a34; }
+    border-bottom: 1px solid #252a34;
+    left: 0;
+    top: 0;
+    right: 0; }
   .navbar ul, .navbar ol {
     list-style: none;
     padding: 0;
@@ -252,18 +264,6 @@ ul ul, ul ol, ol ul, ol ol {
     text-align: left;
     z-index: 10;
     transition: 0.33s all cubic-bezier(0.785, 0.135, 0.15, 0.86); }
-    .navbar-nav-wrap::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 50%;
-      width: 200vw;
-      bottom: 0;
-      z-index: -1;
-      -webkit-transform: translateX(-50%);
-      transform: translateX(-50%);
-      background: inherit;
-      pointer-events: none; }
     .navbar-nav-wrap-inner {
       display: -ms-flexbox;
       display: -webkit-flex;
@@ -340,9 +340,12 @@ ul ul, ul ol, ol ul, ol ol {
             font-size: 1.5em; }
           .navbar-search .rd-search-toggle i:hover {
             color: #229dd1; }
-    .navbar-search .rd-search.active {
-      opacity: 1;
-      width: 330px; }
+        .navbar-search .rd-search-toggle i.fa-times-circle {
+          transition: .3s all ease;
+          transform: scale(0) rotate(-90deg); }
+        .navbar-search .rd-search-toggle i.fa-search {
+          transition: .3s all ease;
+          transform: scale(1) rotate(0deg); }
     .navbar-search .rd-input-label {
       display: inherit; }
     .navbar-search .rd-input-label.focus {
@@ -432,15 +435,65 @@ ul ul, ul ol, ol ul, ol ol {
       transform: translateY(0px);
       -webkit-transform: translateY(0px); }
 
+@media (max-width: 1199px) {
+  .navbar-static .navbar-search {
+    position: static; }
+
+  .rd-search {
+    margin-left: auto;
+    overflow: hidden;
+    opacity: 0;
+    width: 100%; }
+    .rd-search-toggle i.fa-times-circle {
+      display: none; }
+    .rd-search-toggle i.fa-search {
+      display: none; }
+    .rd-search-toggle i.fa-times-circle.active {
+      display: inline; }
+    .rd-search-toggle i.fa-search.active {
+      display: inline; }
+    .rd-search::before {
+      content: '';
+      position: absolute;
+      top: -1px;
+      bottom: -1px;
+      left: 50%;
+      z-index: -1;
+      transform: translateX(-50%);
+      width: 120vw;
+      background: #282e3a; }
+
+  .rd-search label {
+    transition: none; }
+
+  .rd-search.active {
+    position: absolute;
+    opacity: 1;
+    top: 100%;
+    width: calc(100vw - 23px);
+    right: -4px;
+    padding: 2px; }
+
+  .navbar-submenu {
+    left: -21px; } }
 @media (min-width: 1200px) {
   .navbar-static .navbar-search {
     width: 330px; }
+    .navbar-static .navbar-search .rd-search.active {
+      opacity: 1;
+      width: 330px; }
 
   .rd-search {
     margin-left: auto;
     overflow: hidden;
     opacity: 0;
     width: 0; }
+    .rd-search-toggle i.fa-times-circle {
+      display: none; }
+    .rd-search-toggle i.fa-search {
+      display: none; }
+    .rd-search-toggle i.fa-search.active {
+      display: inline; }
 
   .rd-search label {
     transition: none; }
@@ -1072,11 +1125,9 @@ address {
     content: '';
     position: absolute;
     top: 100px;
-    bottom: 0;
-    left: -27%;
-    -webkit-transform: translateX(-50%);
-    transform: translateX(-50%);
-    width: 100vw;
+    bottom: 72px;
+    left: 0;
+    width: 100%;
     z-index: -1;
     background: #f2f2f5;
     pointer-events: none; } }
@@ -1100,10 +1151,10 @@ address {
 
 @media (min-width: 768px) and (max-width: 991px) {
   .owl-prev {
-    left: -10px; } }
+    left: -50px; } }
 @media (min-width: 992px) and (max-width: 1199px) {
   .owl-prev {
-    left: -19px; } }
+    left: -30px; } }
 @media (min-width: 1200px) {
   .owl-prev {
     left: -20px; } }
@@ -1112,10 +1163,10 @@ address {
 
 @media (min-width: 768px) and (max-width: 991px) {
   .owl-next {
-    right: -10px; } }
+    right: -50px; } }
 @media (min-width: 992px) and (max-width: 1199px) {
   .owl-next {
-    right: -19px; } }
+    right: -30px; } }
 @media (min-width: 1200px) {
   .owl-next {
     right: -20px; } }
