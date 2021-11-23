@@ -134,19 +134,21 @@ let navTop = stickyNav.offsetTop;
 
 
 function fixedNav() {
-  // console.log(`sticky div: offset: ${navTop}`);
-  // console.log(window.scrollY);
-
-  if (window.scrollY >= navTop) {    
-    stickyNav.classList.add('fixed');
-  } else {
-    stickyNav.classList.remove('fixed');    
+  console.log(`sticky div: offset: ${navTop}`);
+  console.log(window.scrollY);
+  
+  if(window.innerWidth >= 992) {
+    if (window.scrollY >= navTop) {    
+      stickyNav.classList.add('fixed');
+    } else {
+      stickyNav.classList.remove('fixed');    
+    }
   }
 }
 
 window.addEventListener('scroll', fixedNav);
 
-let header = document.querySelector('.header');
+// let header = document.querySelector('.header');
 
 
 // Search field toggle
@@ -235,4 +237,99 @@ document.addEventListener('click', (e) => {
   if(!e.target.classList.contains('form-control') && rdInputField.value === '') {
     rdLabel.classList.remove('focus');
   }
+});
+
+
+// Mobile version (Navbar particularly)
+
+const navbar = document.querySelector('.navbar-inner');
+const navbarInfo = document.querySelector('.navbar-info');
+const navbarInfoBtn = document.querySelector('.nav-btn.open-btn');
+const navbarInfoAside = document.querySelector('.navbar-aside');
+const pcMenu = document.getElementById('navbar-nav-pc');
+const mobileMenu = document.getElementById('navbar-nav-mobile');
+const mainNavigation = document.querySelector('.navbar-sticky')
+
+window.addEventListener('resize', resizingOccure);
+
+function resizingOccure() {
+
+  if(window.innerWidth <= 991) {
+    // Hide first block of nav
+    navbar.children[0].style.display = "none";
+    // Hide navigation info aside component
+    navbarInfoAside.style.display = "none";
+    // Show Button
+    navbarInfoBtn.style.display = "block";
+    // Hide PC version of navbar menu
+    pcMenu.style.display = "none";
+    // Show Mobile version of navbar menu
+    mobileMenu.style.display = "block";
+    // Switch navbar to mobile version
+    mainNavigation.classList.add('mobile');
+    // Get rid of fixed navbar on mobile version
+    mainNavigation.classList.remove('fixed');
+  } else {
+    // Hide Button
+    navbarInfoBtn.style.display = "none";
+    // Show first block of nav
+    navbar.children[0].style.display = "block";
+    // Show navigation info aside component
+    navbarInfoAside.style.display = "block";
+    // Show PC version of navbar menu
+    pcMenu.style.display = "block";
+    // Hide Mobile version of navbar menu
+    mobileMenu.style.display = "none";
+    // Hide navabr to mobile version
+    mainNavigation.classList.remove('mobile');
+  }
+}
+
+window.onload = function() {
+  if(window.innerWidth >= 992) {
+    // Hide Navbar fa-times Button
+    navbarInfoBtn.style.display = "none";
+    // Hide Mobile version of navbar menu
+    mobileMenu.style.display = "none";
+  } else if(window.innerWidth < 992) {
+    navbarInfoBtn.style.display = "block";
+    navbarInfoAside.style.display = "none";
+    // Hide first block of nav
+    navbar.children[0].style.display = "none";
+    // Hide PC version of navbar menu
+    pcMenu.style.display = "none";
+    // Switch navbar to mobile version
+    mainNavigation.classList.add('mobile');
+    // Get rid of fixed navbar on mobile version
+    mainNavigation.classList.remove('fixed');
+  }
+};
+
+// const menuWrapper = document.querySelector(".menu-wrapper");
+const hasCollapsible = document.querySelectorAll(".has-collapsible");
+const toggleSideMenu = document.querySelector('button.open-btn');
+
+// Sidenav Toggle
+toggleSideMenu.addEventListener("click", () => {
+  stickyNav.classList.toggle("visible");
+  toggleSideMenu.children[0].classList.toggle("hide");
+  toggleSideMenu.children[1].classList.toggle("hide");
+});
+
+// closeMenu.addEventListener("click", function () {
+//   menuWrapper.classList.remove("offcanvas");
+// });
+
+// Collapsible Menu Item in Sidenav
+hasCollapsible.forEach(function (collapsible) {
+  collapsible.addEventListener("click", function () {
+    collapsible.classList.toggle("active");
+
+    // Close Other Collapsible
+    hasCollapsible.forEach(function (otherCollapsible) {
+      if (otherCollapsible !== collapsible) {
+        otherCollapsible.classList.remove("active");
+      }
+    });
+  });
 });

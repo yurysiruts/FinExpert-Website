@@ -1,17 +1,15 @@
 ## FinExpert Responsive Website
 
 ToDo List:
-1. Mobile Version
-2. Webpack to add
+1. Webpack to add
 
 In process:
-1. Reusable, scalable header
-2. Layout under 992px
 
 Done:
 1. Laptop 15,6 layout
 2. Layout 992px(+) done
-3. main styles: 
+3. Layout under 992px
+4. main styles: 
   * page, 
   * range, 
   * section, 
@@ -20,5 +18,7 @@ Done:
   * icon,
   * block,
   * list
-4. Layout Bug Fixed
-5. 2 Versions of input fields for navbar depending on outer width
+5. Layout Bug Fixed
+6. Input fields for navbar depending on outer width
+7. Mobile & Tablet Version 
+8. Reusable, scalable header
